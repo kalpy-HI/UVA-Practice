@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		// TODO 自動產生的方法 Stub
+		Scanner sc = new Scanner(System.in);
+		
+		for(;sc.hasNext();) {
+			StringTokenizer st = new StringTokenizer(sc.nextLine()," ");
+			int count = st.countTokens();
+			int[] arr = new int[count];
+			boolean torf = true;
+			
+			for(int i=0;i<count;i++) {
+				arr[i]= Integer.parseInt(st.nextToken());
+			}
+			
+			for(int i=0;i<count;i++) {
+				if(0==i) {
+					int ab = Math.abs(arr[i]-arr[i+1]);
+					if((ab<1 || ab>count))
+						torf = false;
+				}
+				else if(i>=1 && i<=count-2) {
+					int ab1 = Math.abs(arr[i]-arr[i+1]);
+					int ab2 = Math.abs(arr[i]-arr[i-1]);
+					if(ab1<1 || ab1>count || ab2<1 || ab2>count)
+						torf = false;
+				}
+				else if(count-1==i) {
+					int ab = Math.abs(arr[i]-arr[i-1]);
+					if((ab<1 || ab>count))
+						torf = false;
+				}
+			}
+			
+			if(torf) {
+				System.out.println("Jolly");
+			}
+			else System.out.println("Not jolly");
+		}
+		sc.close();
+	}
+}
